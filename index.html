@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl"><head>
+<html lang="he" dir="rtl">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>אביגיל ברגמן | צילום, וידאו ועריכה</title>
@@ -9,8 +10,8 @@
 <meta property="og:description" content="צילומי ילדים ומשפחה בחוץ, אלבומים מעוצבים והסרטות וידאו.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&amp;family=Frank+Ruhl+Libre:wght@300;400;500&amp;family=Secular+One&amp;family=Suez+One&amp;family=Amatic+SC:wght@400;700&amp;family=Gveret+Levin+AlefAlefAlef&amp;family=Cormorant+Garamond:wght@300;400&amp;display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&family=Frank+Ruhl+Libre:wght@300;400;500&family=Secular+One&family=Suez+One&family=Amatic+SC:wght@400;700&family=Gveret+Levin+AlefAlefAlef&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
 <style>
   :root{
     --rose:#CF598D; --coral:#E67972;
@@ -305,8 +306,57 @@
 .pvr{position:absolute;top:0;bottom:0;right:0;width:9px;cursor:ew-resize;background:linear-gradient(90deg,transparent,rgba(207,89,141,.25))}.pvr:hover{background:rgba(207,89,141,.45)}
 .pvpill{position:fixed;left:16px;bottom:16px;z-index:302;display:none}.pvh .adm-btn{font-size:13px;padding:2px 9px}
 .adm.tight .adm-body{grid-template-columns:1fr}.adm.tight .adm-nav{position:static;flex-direction:row;overflow:auto}
+
+/* ===== אפקטים חיים (נשלטים מהדשבורד) ===== */
+:root{--fx:1}html.fx-l1{--fx:.6}html.fx-l3{--fx:1.5}
+.fx-ch{display:inline-block;white-space:pre;animation:chPop .85s cubic-bezier(.34,1.56,.64,1) backwards;animation-delay:calc(var(--i)*75ms)}
+@keyframes chPop{from{opacity:0;transform:translateY(calc(60px*var(--fx))) scale(.4) rotate(-14deg)}}
+.fx-t .fx-w{display:inline-block}
+html.fx-ttl .fx-t:not(.fx-in) .fx-w{opacity:0}
+html.fx-ttl .fx-t.fx-in .fx-w{animation:wPop .75s cubic-bezier(.34,1.56,.64,1) backwards;animation-delay:calc(var(--i)*80ms)}
+@keyframes wPop{from{opacity:0;transform:translateY(calc(.8em*var(--fx))) scale(.7) rotate(-5deg)}}
+html.fx-ttl .poem p{opacity:0}
+html.fx-ttl .poem.in p{opacity:1;animation:slideR .9s cubic-bezier(.2,.9,.3,1) backwards}
+html.fx-ttl .poem.in p:nth-child(2){animation-delay:.14s}html.fx-ttl .poem.in p:nth-child(3){animation-delay:.28s}html.fx-ttl .poem.in p:nth-child(4){animation-delay:.42s}html.fx-ttl .poem.in p:nth-child(5){animation-delay:.56s}html.fx-ttl .poem.in p:nth-child(6){animation-delay:.7s}html.fx-ttl .poem.in p:nth-child(7){animation-delay:.84s}
+@keyframes slideR{from{opacity:0;transform:translateX(calc(60px*var(--fx)))}}
+html.fx-mark .fx-mk{background-image:linear-gradient(transparent 58%,rgba(246,176,200,.7) 58%);background-repeat:no-repeat;background-position:right 0;background-size:0 100%;transition:background-size 1s cubic-bezier(.2,.8,.2,1) .35s}
+html.fx-mark .fx-mk.fx-in{background-size:100% 100%}
+.fx-fl{display:none;position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+html.fx-float .fx-fl{display:block}
+.fx-fl svg{position:absolute;fill:currentColor;animation:flo 7s ease-in-out infinite alternate;animation-delay:var(--dl,0s);will-change:transform}
+@keyframes flo{from{transform:translate(0,0) rotate(var(--r,0deg))}to{transform:translate(calc(12px*var(--fx)),calc(-26px*var(--fx))) rotate(calc(var(--r,0deg) + 18deg))}}
+.about,.value,.talk{position:relative}.about>.wrap,.value>.wrap,.talk>.wrap{position:relative;z-index:1}
+html.fx-float .val .ic{animation:bob 3.8s ease-in-out infinite}
+html.fx-float .val:nth-child(2) .ic{animation-delay:.5s}html.fx-float .val:nth-child(3) .ic{animation-delay:1s}html.fx-float .val:nth-child(4) .ic{animation-delay:1.5s}
+@keyframes bob{50%{translate:0 calc(-6px*var(--fx))}}
+html.fx-gal .grid button.fx-g:not(.fx-in){opacity:0}
+html.fx-gal .grid button.fx-g.fx-in{animation:gPop .8s cubic-bezier(.34,1.5,.5,1) backwards;animation-delay:calc(var(--gi,0)*90ms)}
+@keyframes gPop{from{opacity:0;transform:translateY(calc(40px*var(--fx))) scale(.82) rotate(-2.5deg)}}
+html.fx-gal .grid button:hover{transform:translateY(-6px) rotate(-1deg) scale(1.02)}
+html.fx-para .srv-img img{transform:translateY(var(--py,0px)) scale(1.16);transition:transform .25s linear;will-change:transform}
+html.fx-para .srv:hover .srv-img img{transform:translateY(var(--py,0px)) scale(1.22)}
+html.fx-para .hero-word{transform:translate(50%,var(--hy,0px));opacity:var(--ho,1)}
+.hero-word{bottom:max(100px,17%)}.dots{bottom:24px}
+.fx-rib-w{display:none;position:relative;z-index:2}html.fx-rib .fx-rib-w{display:block}
+.fx-band{direction:ltr;overflow:hidden;background:var(--grad);color:#fff;padding:13px 0;font-family:var(--display);font-size:clamp(20px,2.5vw,29px);font-weight:300;letter-spacing:.03em;white-space:nowrap;box-shadow:0 14px 30px -22px rgba(59,42,49,.7)}
+.fx-rt{display:flex;width:max-content;direction:ltr;animation:ribMv var(--dur,40s) linear infinite}
+.fx-band:hover .fx-rt{animation-play-state:paused}
+.fx-rt span{padding:0 20px;direction:rtl}.fx-rt i{font-style:normal;opacity:.75;font-size:.7em;align-self:center}
+@keyframes ribMv{to{transform:translateX(-50%)}}
+.fx-sp{position:fixed;z-index:400;pointer-events:none;font-size:var(--sz,14px);line-height:1;color:var(--c,#CF598D);animation:spk 1s ease-out forwards;will-change:transform,opacity}
+@keyframes spk{to{opacity:0;transform:translate(var(--dx,0),var(--dy,-40px)) rotate(var(--rt,40deg)) scale(.3)}}
+html.fx-btn .hero-cta{animation:ctaP 3.2s ease-in-out infinite}
+@keyframes ctaP{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.5)}60%{box-shadow:0 0 0 16px rgba(255,255,255,0)}}
+html.fx-btn .call{animation:callG 3.6s ease-in-out infinite}
+@keyframes callG{0%,100%{box-shadow:0 6px 18px -8px rgba(207,89,141,.8)}50%{box-shadow:0 6px 26px -2px rgba(207,89,141,.95)}}
+html.fx-btn .float-wa{animation:waW 7s ease-in-out infinite}
+@keyframes waW{0%,84%,100%{rotate:0deg;scale:1}88%{rotate:-14deg;scale:1.12}92%{rotate:12deg;scale:1.12}96%{rotate:-6deg;scale:1.05}}
+html.fx-btn .bar img:hover{animation:wig .7s ease}
+@keyframes wig{25%{rotate:-4deg}50%{rotate:4deg}75%{rotate:-2deg}}
+html.fx-btn .more:hover,html.fx-btn .send:hover{animation:wig .6s ease}
+@media (prefers-reduced-motion:reduce){.fx-ch,.fx-w,.fx-fl svg,.fx-rt{animation:none!important}}
 </style>
-<meta name="avi-pub" content="mvjg2a3q">
+<meta name="avi-pub" content="mvjh61p8">
 </head>
 <body>
 <a class="skip" href="#about">דילוג לתוכן</a>
@@ -359,22 +409,22 @@
     <p class="eyebrow">מה תקבלו אצלי</p>
     <div class="grid4">
       <div class="val">
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6h1.9l1.3-2h6.6l1.3 2h1.9A2.5 2.5 0 0 1 21 8.5v8A2.5 2.5 0 0 1 18.5 19h-13A2.5 2.5 0 0 1 3 16.5z"></path><circle cx="12" cy="12.5" r="3.4"></circle></svg></div>
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6h1.9l1.3-2h6.6l1.3 2h1.9A2.5 2.5 0 0 1 21 8.5v8A2.5 2.5 0 0 1 18.5 19h-13A2.5 2.5 0 0 1 3 16.5z"/><circle cx="12" cy="12.5" r="3.4"/></svg></div>
         <h3>עיבוד מוקפד לכל תמונה</h3>
         <p>ריטוש, תיקון ועיבוד עדין – עד שהתמונה בדיוק כמו שדמיינו.</p>
       </div>
       <div class="val">
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9z"></path></svg></div>
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9z"/></svg></div>
         <h3>סבלנות ואווירה כיפית</h3>
         <p>הילדים משחקים, צוחקים ונהנים – והתמונות יוצאות אמיתיות.</p>
       </div>
       <div class="val">
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"></path><circle cx="12" cy="10" r="2.6"></circle></svg></div>
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></div>
         <h3>לוקיישנים קסומים</h3>
         <p>שדה, פרדס, ים או טבע פתוח – נבחר יחד את המקום שמתאים לכם.</p>
       </div>
       <div class="val">
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5z"></path><path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5z"></path></svg></div>
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5z"/><path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5z"/></svg></div>
         <h3>אלבום שנשאר לדורות</h3>
         <p>עיצוב אישי, הדפסה איכותית, ואלבום שלא מפסיקים להסתכל בו.</p>
       </div>
@@ -463,17 +513,17 @@
       <p class="sub">אשמח לשמוע מה אתם מחפשים – ולתאם יחד יום צילומים שיישאר אצלכם על הקיר, במדף ובלב.</p>
       <div class="ways">
         <a class="way" id="w-tel" href="tel:0527160175">
-          <span class="icon"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"></path></svg></span>
+          <span class="icon"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg></span>
           <span><b>052-716-0175</b><br><span>מוזמנות להתקשר</span></span>
         </a>
         <a class="way" id="w-mail" href="mailto:a0527160175@gmail.com">
-          <span class="icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4.2-8 5-8-5V6l8 5 8-5v2.2z"></path></svg></span>
+          <span class="icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4.2-8 5-8-5V6l8 5 8-5v2.2z"/></svg></span>
           <span><b>a0527160175@gmail.com</b><br><span>או לכתוב לי מייל</span></span>
         </a>
       </div>
     </div>
 
-    <form id="lead" novalidate="">
+    <form id="lead" novalidate>
       <h3>נעים להכיר</h3>
       <p class="hint">ממלאים, לוחצים – ונפתחת אצלכם הודעת מייל אליי, מוכנה לשליחה.</p>
       <label for="f-name">איך קוראים לך?</label>
@@ -506,9 +556,9 @@
 </footer>
 
 <a class="float-mail" id="float-mail" href="#" aria-label="שליחת מייל לאביגיל">
-  <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4.2-8 5-8-5V6l8 5 8-5v2.2z"></path></svg>
+  <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4.2-8 5-8-5V6l8 5 8-5v2.2z"/></svg>
 </a>
-<a class="float-wa" id="float-wa" href="#" target="_blank" rel="noopener" aria-label="שליחת הודעה בוואטסאפ"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm4.6 13.6c-.2.5-1.1 1-1.5 1-.4.1-.9.1-2.900-.7-2.400-1-3.900-3.400-4-3.600-.1-.1-1-1.300-1-2.500s.6-1.700.9-2c.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .5.4l.8 1.900c.1.200.1.300 0 .500l-.4.500c-.1.100-.2.300-.1.500.5.900 1.200 1.600 2 2.100.9.500 1.200.4 1.500.2l.7-.9c.2-.2.400-.2.600-.1l1.800.9c.2.100.4.200.4.300.1.200.1.700-.2 1.300z"></path></svg></a>
+<a class="float-wa" id="float-wa" href="#" target="_blank" rel="noopener" aria-label="שליחת הודעה בוואטסאפ"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm4.6 13.6c-.2.5-1.1 1-1.5 1-.4.1-.9.1-2.900-.7-2.400-1-3.900-3.400-4-3.600-.1-.1-1-1.300-1-2.500s.6-1.700.9-2c.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .5.4l.8 1.900c.1.200.1.300 0 .500l-.4.500c-.1.100-.2.300-.1.500.5.900 1.200 1.600 2 2.100.9.500 1.200.4 1.500.2l.7-.9c.2-.2.400-.2.600-.1l1.800.9c.2.100.4.200.4.300.1.200.1.700-.2 1.300z"/></svg></a>
 <button class="top" id="to-top" aria-label="לראש העמוד">↑</button>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="תצוגת תמונה">
@@ -519,7 +569,7 @@
   <div class="count" id="lb-count"></div>
 </div>
 
-<script id="site-data" type="application/json">{"texts":{"tTel":"מוזמנים להתקשר"},"hero":[{"i":"ref:hero1","word":"צחוק","x":88,"y":76},{"i":"images/56a2cbb6cd92a12d14.jpg","word":"ציצית","x":50,"y":50},{"i":"images/1dc8590d58fd5282374.jpg","word":"בדיקה! בדיקה! בדיקה! בדיקה! ","x":50,"y":50}],"gallery":[{"i":"ref:g01","c":"baby","w":950,"h":633},{"i":"ref:g02","c":"baby","w":950,"h":633},{"i":"ref:g03","c":"baby","w":633,"h":950},{"i":"ref:g04","c":"baby","w":950,"h":633},{"i":"ref:g05","c":"kids","w":950,"h":633},{"i":"ref:g06","c":"kids","w":950,"h":633},{"i":"ref:g07","c":"kids","w":950,"h":633},{"i":"ref:g08","c":"mitzva","w":950,"h":633},{"i":"ref:g09","c":"mitzva","w":950,"h":633},{"i":"ref:g10","c":"kids","w":950,"h":633},{"i":"ref:g11","c":"kids","w":950,"h":633},{"i":"ref:g12","c":"kids","w":820,"h":547},{"i":"ref:g13","c":"baby","w":820,"h":547},{"i":"ref:g14","c":"kids","w":820,"h":547},{"i":"ref:g15","c":"kids","w":820,"h":547},{"i":"ref:g16","c":"kids","w":820,"h":547},{"i":"ref:g17","c":"kids","w":820,"h":547},{"i":"ref:g18","c":"kids","w":820,"h":547},{"i":"ref:g19","c":"baby","w":820,"h":547},{"i":"ref:g20","c":"kids","w":820,"h":547},{"i":"ref:g21","c":"kids","w":820,"h":547},{"i":"ref:g22","c":"kids","w":820,"h":547},{"i":"ref:g23","c":"baby","w":820,"h":547},{"i":"ref:g24","c":"kids","w":820,"h":547},{"i":"ref:g25","c":"kids","w":820,"h":547},{"i":"ref:g26","c":"mitzva","w":820,"h":547},{"i":"ref:g27","c":"kids","w":820,"h":547},{"i":"ref:g28","c":"kids","w":820,"h":547},{"i":"ref:g29","c":"kids","w":820,"h":547},{"i":"ref:g30","c":"kids","w":547,"h":820},{"i":"images/10177b00c2ea97618ac.jpg","c":"baby","w":1116,"h":944}],"albums":["ref:g23","ref:g14","ref:g18","ref:g26","ref:g10","ref:g28"],"services":["ref:g01","ref:g07","ref:g08"],"portrait":"images/1c0cf5146d2f873e1c0.jpg","logo":"ref:logo","cats":[{"id":"baby","label":"תינוקות"},{"id":"kids","label":"ילדים"},{"id":"mitzva","label":"בר ובת מצווה"}],"reviews":[],"kinds":["צילומי ילדים ומשפחה","אלבום מעוצב","הסרטת וידאו / קליפ לבת מצווה","עוד לא בטוחה, רוצה להתייעץ"],"set":{"phone":"0527160175","email":"a0527160175@gmail.com","wa":true,"ig":"","fb":"","title":"אביגיל ברגמן | צילום, וידאו ועריכה","desc":"אביגיל ברגמן – צילומי ילדים ומשפחה בחוץ, אלבומים מעוצבים והסרטות וידאו. רגעים של ביחד, שנשארים לתמיד.","font":"Rubik","rose":"#dd87a7","coral":"#efaaa6","sec":5.5,"pass":"e0c54d5e1990317e24173438377f06de08e436cd290b53a3c17acaa23f1ee564"},"mail":{"prov":"mailto","key":"","svc":"","tpl":"","url":""}}</script>
+<script id="site-data" type="application/json">{"texts":{"tTel":"מוזמנים להתקשר"},"hero":[{"i":"ref:hero1","word":"צחוק","x":88,"y":76},{"i":"images/56a2cbb6cd92a12d14.jpg","word":"ציצית","x":50,"y":50},{"i":"images/18818216deae93d0f20.jpg","word":"בדיקה! בדיקה! בדיקה! בדיקה! ","x":50,"y":50}],"gallery":[{"i":"ref:g01","c":"baby","w":950,"h":633},{"i":"ref:g02","c":"baby","w":950,"h":633},{"i":"ref:g03","c":"baby","w":633,"h":950},{"i":"ref:g04","c":"baby","w":950,"h":633},{"i":"ref:g05","c":"kids","w":950,"h":633},{"i":"ref:g06","c":"kids","w":950,"h":633},{"i":"ref:g07","c":"kids","w":950,"h":633},{"i":"ref:g08","c":"mitzva","w":950,"h":633},{"i":"ref:g09","c":"mitzva","w":950,"h":633},{"i":"ref:g10","c":"kids","w":950,"h":633},{"i":"ref:g11","c":"kids","w":950,"h":633},{"i":"ref:g12","c":"kids","w":820,"h":547},{"i":"ref:g13","c":"baby","w":820,"h":547},{"i":"ref:g14","c":"kids","w":820,"h":547},{"i":"ref:g15","c":"kids","w":820,"h":547},{"i":"ref:g16","c":"kids","w":820,"h":547},{"i":"ref:g17","c":"kids","w":820,"h":547},{"i":"ref:g18","c":"kids","w":820,"h":547},{"i":"ref:g19","c":"baby","w":820,"h":547},{"i":"ref:g20","c":"kids","w":820,"h":547},{"i":"ref:g21","c":"kids","w":820,"h":547},{"i":"ref:g22","c":"kids","w":820,"h":547},{"i":"ref:g23","c":"baby","w":820,"h":547},{"i":"ref:g24","c":"kids","w":820,"h":547},{"i":"ref:g25","c":"kids","w":820,"h":547},{"i":"ref:g26","c":"mitzva","w":820,"h":547},{"i":"ref:g27","c":"kids","w":820,"h":547},{"i":"ref:g28","c":"kids","w":820,"h":547},{"i":"ref:g29","c":"kids","w":820,"h":547},{"i":"ref:g30","c":"kids","w":547,"h":820},{"i":"images/10177b00c2ea97618ac.jpg","c":"baby","w":1116,"h":944}],"albums":["ref:g23","ref:g14","ref:g18","ref:g26","ref:g10","ref:g28"],"services":["ref:g01","ref:g07","ref:g08"],"portrait":"images/1c0cf5146d2f873e1c0.jpg","logo":"ref:logo","cats":[{"id":"baby","label":"תינוקות"},{"id":"kids","label":"ילדים"},{"id":"mitzva","label":"בר ובת מצווה"}],"reviews":[],"kinds":["צילומי ילדים ומשפחה","אלבום מעוצב","הסרטת וידאו / קליפ לבת מצווה","עוד לא בטוחה, רוצה להתייעץ"],"set":{"phone":"0527160175","email":"a0527160175@gmail.com","wa":true,"ig":"","fb":"","title":"אביגיל ברגמן | צילום, וידאו ועריכה","desc":"אביגיל ברגמן – צילומי ילדים ומשפחה בחוץ, אלבומים מעוצבים והסרטות וידאו. רגעים של ביחד, שנשארים לתמיד.","font":"Rubik","rose":"#dd87a7","coral":"#efaaa6","sec":5.5,"pass":"e0c54d5e1990317e24173438377f06de08e436cd290b53a3c17acaa23f1ee564"},"mail":{"prov":"mailto","key":"","svc":"","tpl":"","url":""}}</script>
 <script>
 /* התמונות עצמן שמורות כאן, בתוך הקובץ. אין צורך לגעת. */
 const PHOTOS = {
@@ -592,7 +642,7 @@ const DEF={texts:{},
  services:['g01','g07','g08'].map(k=>'ref:'+k),portrait:'',logo:'ref:logo',
  cats:[{id:'baby',label:'תינוקות'},{id:'kids',label:'ילדים'},{id:'mitzva',label:'בר ובת מצווה'}],
  reviews:[],kinds:$$('#f-kind option').map(o=>o.textContent),
- set:{phone:'0527160175',email:'a0527160175@gmail.com',wa:true,ig:'',fb:'',title:document.title,desc:$('meta[name=description]').content,font:'Rubik',rose:'#CF598D',coral:'#E67972',sec:5.5,pass:''},
+ set:{phone:'0527160175',email:'a0527160175@gmail.com',wa:true,ig:'',fb:'',title:document.title,desc:$('meta[name=description]').content,font:'Rubik',rose:'#CF598D',coral:'#E67972',sec:5.5,pass:'',fx:true,fxHero:true,fxTtl:true,fxFloat:true,fxMark:true,fxGal:true,fxPara:true,fxCursor:true,fxRib:true,fxBtn:true,fxLevel:'2',ribbon:'צחוק · רגעים · אהבה · ילדות · משפחה · זיכרונות'},
  mail:{prov:'mailto',key:'',svc:'',tpl:'',url:''}};
 const mg=(a,b)=>{const o=structuredClone(a);for(const k in b)o[k]=(k==='set'||k==='mail'||k==='texts')?{...o[k],...b[k]}:b[k];return o};
 const emb=()=>JSON.parse($('#site-data').textContent||'{}');
@@ -615,7 +665,7 @@ function rt(){
  r.setProperty('--rose',s.rose);r.setProperty('--coral',s.coral);r.setProperty('--display','"'+s.font+'",Arial,sans-serif');r.setProperty('--dw',FW[s.font]);
  document.body.classList.toggle('cf',s.font!=='Rubik');
  document.title=s.title;$('meta[name=description]').content=s.desc;$('meta[property="og:title"]').content=s.title;
- TF.forEach(g=>g[1].forEach(([k,,sel])=>{const e=$(sel);if(e)e.textContent=tx(k)}));
+ TF.forEach(g=>g[1].forEach(([k,,sel])=>{const e=$(sel);if(e){const v=tx(k);if(!(e.querySelector('.fx-w')&&e.textContent===v))e.textContent=v}}));
  const ph=s.phone,pr=ph.replace(/^(\d{3})(\d{3})(\d{4})$/,'$1-$2-$3'),tel='tel:'+ph,m='mailto:'+s.email;
  $('#hdr-call').href=tel;$('#w-tel').href=tel;$('#w-tel b').textContent=pr;$('#w-mail').href=m;$('#w-mail b').textContent=s.email;
  $$('footer a[href^="tel"]').forEach(a=>{a.href=tel;a.textContent=pr});
@@ -627,7 +677,8 @@ function rt(){
  let j=$('#ld');if(!j){j=h('script',{id:'ld',type:'application/ld+json'});document.head.append(j)}
  j.textContent=JSON.stringify({'@context':'https://schema.org','@type':'ProfessionalService',name:'אביגיל ברגמן',telephone:ph,email:s.email,description:s.desc});
  slides.forEach((d,i)=>{if(D.hero[i])d.style.backgroundPosition=D.hero[i].x+'% '+D.hero[i].y+'%'});
- if(D.hero[cur])$('#hero-w').textContent=D.hero[cur].word;
+ if(D.hero[cur]){const w=$('#hero-w');if(w.textContent!==D.hero[cur].word)w.textContent=D.hero[cur].word}
+ fx();
 }
 function rr(){
  const rs=D.reviews.filter(v=>v.t),cs=$('#cards');cs.innerHTML='';
@@ -647,7 +698,7 @@ function show(i){
  cur=(i+slides.length)%slides.length;
  slides.forEach((s,n)=>s.classList.toggle('on',n===cur));
  [...$('#dots').children].forEach((b,n)=>b.setAttribute('aria-current',n===cur));
- const w=$('#hero-w');w.textContent=D.hero[cur].word;w.classList.remove('fade');void w.offsetWidth;w.classList.add('fade');
+ const w=$('#hero-w');w.textContent=D.hero[cur].word;w.classList.remove('fade');void w.offsetWidth;w.classList.add('fade');fxHeroText();
  clearInterval(timer);if(slides.length>1)timer=setInterval(()=>show(cur+1),D.set.sec*1000);
 }
 function render(){
@@ -662,6 +713,38 @@ function render(){
  rtabs();rg();lite();
 }
 function lite(){rt();rr();rtabs()}
+
+/* ===== אפקטים חיים ===== */
+const FXK=[['Hero','hero'],['Ttl','ttl'],['Float','float'],['Mark','mark'],['Gal','gal'],['Para','para'],['Cursor','cursor'],['Rib','rib'],['Btn','btn']];
+const fxOK=!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
+const on=k=>fxOK&&D.set.fx!==false&&D.set['fx'+k]!==false;
+const fxIO='IntersectionObserver'in window?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('fx-in');fxIO.unobserve(e.target)}}),{threshold:.2,rootMargin:'0px 0px -6% 0px'}):null;
+const fxSee=e=>{if(fxIO&&!e.classList.contains('fx-in'))fxIO.observe(e);else e.classList.add('fx-in')};
+function fxSplit(el){el.dataset.fxo=el.innerHTML;let i=0;const w=n=>{[...n.childNodes].forEach(c=>{if(c.nodeType===3){const f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(p=>{if(!p)return;if(/^\s+$/.test(p))f.append(' ');else{const s=document.createElement('span');s.className='fx-w';s.style.setProperty('--i',i++);s.textContent=p;f.append(s)}});c.replaceWith(f)}else if(c.nodeType===1){if(c.tagName==='EM'){c.classList.add('fx-w');c.style.setProperty('--i',i++)}else w(c)}})};w(el)}
+function fxTitles(){$$('.sec-head h2,.intro h2,.talk h2,.srv h3').forEach(e=>{if(on('Ttl')){if(!e.querySelector('.fx-w'))fxSplit(e);e.classList.add('fx-t');fxSee(e)}else{if(e.dataset.fxo!=null){e.innerHTML=e.dataset.fxo;delete e.dataset.fxo}e.classList.remove('fx-t')}})}
+function fxScan(){$$('.grid button').forEach((b,i)=>{b.classList.add('fx-g');b.style.setProperty('--gi',i%6);fxSee(b)});$$('.srv .count').forEach(e=>{e.classList.add('fx-mk');fxSee(e)})}
+function fxHeroText(){const w=$('#hero-w');if(!w||!D.hero[cur])return;const t=D.hero[cur].word;if(on('Hero')){w.textContent='';[...t].forEach((c,i)=>{const s=document.createElement('span');s.className='fx-ch';s.style.setProperty('--i',i);s.textContent=c;w.append(s)})}else if(w.querySelector('.fx-ch'))w.textContent=t}
+const FSH={h:'M12 21s-7.5-4.6-9.6-9.3C.9 8.2 3 4.5 6.6 4.5c2 0 3.5 1.1 5.4 3.2 1.9-2.1 3.4-3.2 5.4-3.2 3.6 0 5.7 3.7 4.2 7.2C19.5 16.4 12 21 12 21z',s:'M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z',c:'M12 4a8 8 0 1 0 0 16 8 8 0 0 0 0-16zm0 3.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9z'};
+const FSP={'.about':[['h',4,10,34,0,-12,'--rose'],['s',90,18,26,1.2,8,'--coral'],['c',8,72,30,2,0,'--coral'],['h',88,80,24,.6,14,'--rose'],['s',46,92,20,1.8,0,'--rose']],'.value':[['s',6,22,24,.4,0,'--rose'],['h',92,30,28,1.4,10,'--coral'],['c',94,84,22,.8,0,'--rose'],['s',3,86,18,2,0,'--coral']],'.talk':[['h',3,14,32,.2,-10,'--rose'],['s',50,6,22,1,0,'--coral'],['h',93,70,30,1.6,12,'--rose'],['c',7,84,26,.7,0,'--coral'],['s',64,94,20,2.2,0,'--rose']]};
+function fxFloat(){for(const q in FSP){const el=$(q);if(!el||el.querySelector(':scope>.fx-fl'))continue;const c=h('div',{class:'fx-fl','aria-hidden':'true'});FSP[q].forEach(([t,x,y,sz,dl,r,col])=>{const n='http://www.w3.org/2000/svg',sv=document.createElementNS(n,'svg'),p=document.createElementNS(n,'path');sv.setAttribute('viewBox','0 0 24 24');p.setAttribute('d',FSH[t]);sv.append(p);sv.style.cssText='left:'+x+'%;top:'+y+'%;width:'+sz+'px;height:'+sz+'px;color:var('+col+');opacity:.26;--dl:'+dl+'s;--r:'+r+'deg';c.append(sv)});el.prepend(c)}}
+let fxRk='';
+function fxRibbon(){let w=$('.fx-rib-w');if(!w){w=h('div',{class:'fx-rib-w','aria-hidden':'true'},h('div',{class:'fx-band'},h('div',{class:'fx-rt'})));const hr=$('.hero');hr&&hr.after(w)}
+ const rt=w.querySelector('.fx-rt'),W=Math.max(innerWidth,screen.width||0,1600),k=(D.set.ribbon||'')+'|'+W;if(k===fxRk)return;
+ const it=(D.set.ribbon||'').split(/[·|\n,،]+/).map(x=>x.trim()).filter(Boolean);if(!it.length)it.push('✦');
+ const one=it.map(x=>'<span>'+esc(x)+'</span><i>✦</i>').join('');
+ rt.style.animation='none';rt.innerHTML=one;let w1=rt.getBoundingClientRect().width;const ok=w1>0;if(!ok)w1=it.reduce((a,x)=>a+x.length*17+90,0);
+ const reps=Math.ceil(W/w1)+1,half=one.repeat(reps);rt.innerHTML=half+half;rt.style.setProperty('--dur',Math.max(10,w1*reps/70)+'s');rt.style.animation='';
+ if(ok)fxRk=k}
+addEventListener('resize',()=>{clearTimeout(fxRz);fxRz=setTimeout(()=>{fxRk='';fxRibbon()},250)});let fxRz;
+try{document.fonts&&document.fonts.ready.then(()=>{fxRk='';fxRibbon()})}catch{}
+let fxP=0;
+function fxPar(){fxP=0;if(!on('Para'))return;const vh=innerHeight,L=(parseFloat(D.set.fxLevel)||2)/2;$$('.srv-img img').forEach(im=>{const r=im.parentElement.getBoundingClientRect();if(r.bottom<-50||r.top>vh+50)return;im.style.setProperty('--py',(-(r.top+r.height/2-vh/2)/vh*34*L).toFixed(1)+'px')});const hw=$('.hero-word');if(hw){const t=Math.min(scrollY,innerHeight);hw.style.setProperty('--hy',(-t*.2*L).toFixed(1)+'px');hw.style.setProperty('--ho',Math.max(0,1-t/(innerHeight*.55)).toFixed(2))}}
+addEventListener('scroll',()=>{if(!fxP)fxP=requestAnimationFrame(fxPar)},{passive:true});
+let fxT=0;const SPK=['♥','✦','✿','♡','✧'],SPC=['#CF598D','#E67972','#F29BB8'];
+document.addEventListener('pointermove',e=>{if(e.pointerType!=='mouse'||!on('Cursor'))return;const n=performance.now();if(n-fxT<55)return;fxT=n;const a=$('#adm');if(a&&a.classList.contains('open'))return;if($$('.fx-sp').length>26)return;const L=(parseFloat(D.set.fxLevel)||2),s=document.createElement('span');s.className='fx-sp';s.textContent=SPK[Math.random()*SPK.length|0];s.style.cssText='left:'+(e.clientX+(Math.random()*14-7))+'px;top:'+(e.clientY+6)+'px;--c:'+SPC[Math.random()*3|0]+';--sz:'+(10+Math.random()*8*L/2)+'px;--dx:'+(Math.random()*50-25)+'px;--dy:'+(-30-Math.random()*40)+'px;--rt:'+(Math.random()*80-40)+'deg';s.onanimationend=()=>s.remove();document.body.append(s)},{passive:true});
+function fx(){const r=document.documentElement.classList;FXK.forEach(([k,c])=>r.toggle('fx-'+c,on(k)));['1','2','3'].forEach(n=>r.toggle('fx-l'+n,String(D.set.fxLevel||2)===n));fxTitles();fxScan();fxFloat();fxRibbon();fxHeroText();fxPar()}
+try{new MutationObserver(()=>fxScan()).observe($('#grid'),{childList:true})}catch{}
+
 
 /* לייטבוקס */
 const lb=$('#lb');let idx=0,lf;
@@ -809,8 +892,10 @@ mail:()=>{const m=D.mail,st=h('p',{class:'hn'}),
  card('כתובת המייל באתר','',lab('מייל (מוצג באתר ומשמש כגיבוי)',bind(D.set,'email',{type:'email',dir:'ltr'}))),
  card('אפשרויות "מה מעניין אותך?" בטופס','שורה לכל אפשרות.',(()=>{const e=h('textarea',{rows:5});e.value=D.kinds.join('\n');e.oninput=()=>{D.kinds=e.value.split('\n').map(x=>x.trim()).filter(Boolean);save(1)};return e})())]},
 set:()=>{const s=D.set,pw=h('input',{type:'password',placeholder:'סיסמה חדשה'}),imp=h('input',{type:'file',accept:'.json',style:'display:none'});
+ const chk=(l,k)=>h('label',{style:'display:flex;gap:8px;align-items:center;margin:7px 0'},h('input',{type:'checkbox',checked:s[k]!==false,onchange:e=>{s[k]=e.target.checked;save(1)}}),l);
  imp.onchange=async()=>{try{D=mg(DEF,JSON.parse(await imp.files[0].text()));save();panel()}catch{alert('הקובץ לא תקין')}};
  return[card('פרטי קשר','',lab('טלפון',bind(s,'phone',{type:'tel',dir:'ltr'})),h('label',{},h('input',{type:'checkbox',checked:s.wa,onchange:e=>{s.wa=e.target.checked;save(1)}}),'כפתור וואטסאפ צף באתר'),lab('אינסטגרם (קישור)',bind(s,'ig',{dir:'ltr',placeholder:'https://instagram.com/...'})),lab('פייסבוק (קישור)',bind(s,'fb',{dir:'ltr',placeholder:'https://facebook.com/...'}))),
+ card('אפקטים ואנימציות','נותנים לאתר חיים: אותיות וכותרות שקופצות, צורות צפות, ניצנוצים אחרי העכבר ועוד. אפשר לכבות הכל או כל אפקט בנפרד. מבקרים שהגדירו במכשיר "הפחתת תנועה" יראו אתר רגוע בלי אפקטים.',chk('כל האפקטים (מתג ראשי)','fx'),h('div',{class:'row2'},h('div',{},chk('אותיות קופצות בתמונת הפתיחה','fxHero'),chk('כותרות ומילים שקופצות','fxTtl'),chk('סימון צבעוני מתחת לטקסטים','fxMark'),chk('תמונות גלריה שקופצות','fxGal'),chk('כפתורים שפועמים ונעים','fxBtn')),h('div',{},chk('צורות וליבות צפות ברקע','fxFloat'),chk('תנועת עומק בגלילה','fxPara'),chk('ניצנוצים אחרי העכבר (מחשב)','fxCursor'),chk('רצועת מילים נעה','fxRib'))),lab('עוצמת האפקטים',sel(s,'fxLevel',[['1','עדינה'],['2','בינונית'],['3','חזקה']])),lab('המילים ברצועה הנעה (מפרידים בנקודה ·)',bind(s,'ribbon'))),
  card('מראה','',lab('גופן כותרות',sel(s,'font',FONTS)),h('div',{class:'row2'},lab('צבע ראשי',bind(s,'rose',{type:'color'})),lab('צבע משני',bind(s,'coral',{type:'color'}))),lab('שניות בין תמונות בפתיחה',bind(s,'sec',{type:'number',min:2,max:20,step:.5}))),
  card('קידום בגוגל','',lab('כותרת האתר',bind(s,'title')),lab('תיאור קצר',bind(s,'desc',{rows:3},'textarea'))),
  card('פרסום ישיר לאתר','כך השינויים נשמרים באמת בקובץ שבאתר וכל המבקרים רואים אותם, בלי להוריד ולהעלות ידנית. דורש אחסון באתר GitHub Pages (חינמי). הפרטים והטוקן נשמרים רק בדפדפן הזה, ולא בקובץ האתר.',lab('חשבון ב-GitHub',ghb('o')),lab('שם המאגר (repo)',ghb('r')),lab('ענף (branch)',ghb('b')),lab('שם הקובץ',ghb('p')),lab('טוקן גישה (Fine-grained, הרשאת Contents: Read and write)',ghb('t')),h('div',{class:'ac2',style:'margin-top:12px'},btn('פרסום לאתר עכשיו',()=>ghPublish(),'pri')),h('p',{class:'hn',id:'ghst',style:'margin-top:8px'})),
@@ -841,4 +926,14 @@ addEventListener('hashchange',()=>{if(location.hash==='#admin')openAdmin()});
 render();
 (async()=>{const d=await idbGet('site');if(d){D=mg(DEF,d);norm(D);idbSet('site',D);render()}if(location.hash==='#admin')openAdmin()})();
 })();
-</script></body></html>
+</script>
+<script>
+(function(){
+var p=document.createElement('div');p.id='prog';document.body.prepend(p);
+addEventListener('scroll',function(){var h=document.documentElement,m=h.scrollHeight-h.clientHeight;p.style.transform='scaleX('+(m>0?h.scrollTop/m:0)+')'},{passive:true});
+var w=document.querySelector('.hero-word');if(w){var a=document.createElement('a');a.className='hero-cta';a.href='#talk';a.textContent='לתיאום יום צילומים';w.append(a)}
+var n=0;new MutationObserver(function(){document.querySelectorAll('.rv:not([data-s])').forEach(function(e){e.dataset.s=1;e.style.setProperty('--d',(n++%4))})}).observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['class']});
+})();
+</script>
+</body>
+</html>
