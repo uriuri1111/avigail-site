@@ -186,7 +186,7 @@
   .albums{background:var(--blush);padding:92px 0 100px}
   .track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:14px;
     scrollbar-width:thin;scrollbar-color:var(--line) transparent}
-  .track img{flex:0 0 auto;width:520px;height:320px;max-width:86vw;object-fit:cover;border-radius:12px;scroll-snap-align:center;cursor:zoom-in}
+  .track img{flex:0 0 auto;width:330px;height:230px;object-fit:cover;border-radius:12px;scroll-snap-align:center}
   .note{text-align:center;color:var(--ink-soft);font-size:15.5px;margin-top:18px}
 
   /* testimonials */
@@ -278,7 +278,7 @@
     .srv:nth-of-type(even) .srv-img{order:0}
     .srv-img img{height:300px}
     .grid{columns:2;column-gap:10px} .grid button{margin-bottom:10px}
-    .track img{width:300px;height:200px}
+    .track img{width:250px;height:180px}
     .lb .nav{width:40px;height:40px}
     .fp{bottom:88px;right:14px} .fp-box{width:220px}.float-mail{right:12px}.bar{height:76px}.bar img{height:54px}
     .top{bottom:150px;right:16px}
@@ -405,7 +405,7 @@ html.fx-btn .more:hover,html.fx-btn .send:hover{animation:wig .6s ease}
 @media (prefers-reduced-motion:reduce){.fx-ch,.fx-w,.fx-fl svg,.fx-rt{animation:none!important}}
 *,*::before,*::after{font-family:var(--ff,"Tel Aviv",Arial,sans-serif)}
 </style>
-<meta name="avi-pub" content="mvntgo9r">
+<meta name="avi-pub" content="mvnti0d0">
 </head>
 <body>
 <a class="skip" href="#about">דילוג לתוכן</a>
@@ -755,7 +755,7 @@ function render(){
  ['#logo-top','#logo-foot'].forEach(q=>$(q).src=S(D.logo));{const lf=$('#logo-foot'),lt=$('#logo-top');lf.onerror=()=>{if(lt.src&&lf.src!==lt.src)lf.src=lt.src}}
  const pt=$('#portrait');if(D.portrait){pt.src=S(D.portrait);pt.style.display=''}else pt.style.display='none';
  $$('.ph').forEach((im,i)=>{im.src=S(D.services[i])});
- const tr=$('#track');tr.innerHTML='';D.albums.forEach((a,i)=>tr.append(h('img',{src:S(a),alt:'אלבום '+(i+1)+' – לחיצה להגדלה',loading:'lazy',tabindex:'0',role:'button',onclick:()=>openAlb(i),onkeydown:ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();openAlb(i)}}})));
+ const tr=$('#track');tr.innerHTML='';D.albums.forEach((a,i)=>tr.append(h('img',{src:S(a),alt:'אלבום '+(i+1),loading:'lazy'})));
  $('#albums').style.display=D.albums.length?'':'none';
  rtabs();rg();lite();
 }
@@ -794,12 +794,10 @@ try{new MutationObserver(()=>fxScan()).observe($('#grid'),{childList:true})}catc
 
 
 /* לייטבוקס */
-const lb=$('#lb');let idx=0,lf,lbl=null;
-function openAlb(i){lbl=D.albums;idx=i;lf=document.activeElement;pl();lb.classList.add('open');document.body.style.overflow='hidden';$('#lb-x').focus()}
-function openLb(i){lbl=null;idx=i;lf=document.activeElement;pl();lb.classList.add('open');document.body.style.overflow='hidden';$('#lb-x').focus()}
-const LN=()=>lbl?lbl.length:vis.length,LS=k=>S(lbl?lbl[k]:vis[k].i);
-function pl(){$('#lb-img').src=LS(idx);$('#lb-count').textContent=(idx+1)+' / '+LN();new Image().src=LS((idx+1)%LN())}
-const step=d=>{idx=(idx+d+LN())%LN();pl()},cl=()=>{lb.classList.remove('open');document.body.style.overflow='';lf&&lf.focus()};
+const lb=$('#lb');let idx=0,lf;
+function openLb(i){idx=i;lf=document.activeElement;pl();lb.classList.add('open');document.body.style.overflow='hidden';$('#lb-x').focus()}
+function pl(){$('#lb-img').src=S(vis[idx].i);$('#lb-count').textContent=(idx+1)+' / '+vis.length;new Image().src=S(vis[(idx+1)%vis.length].i)}
+const step=d=>{idx=(idx+d+vis.length)%vis.length;pl()},cl=()=>{lb.classList.remove('open');document.body.style.overflow='';lf&&lf.focus()};
 $('#lb-x').onclick=cl;$('#lb-prev').onclick=()=>step(-1);$('#lb-next').onclick=()=>step(1);$('#more').onclick=()=>more(12);
 lb.onclick=e=>{if(e.target===lb)cl()};
 document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')cl();if(e.key==='ArrowRight')step(-1);if(e.key==='ArrowLeft')step(1)});
@@ -807,7 +805,7 @@ let tx0=0;lb.addEventListener('touchstart',e=>tx0=e.changedTouches[0].clientX,{p
 lb.addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-tx0;if(Math.abs(d)>60)step(d>0?-1:1)},{passive:true});
 
 /* רצועת אלבומים, תפריט, גלילה */
-$('#albums .wrap').append(h('div',{class:'trk'},h('button',{'aria-label':'הקודם',onclick:()=>$('#track').scrollBy({left:540,behavior:'smooth'})},'›'),h('button',{'aria-label':'הבא',onclick:()=>$('#track').scrollBy({left:-540,behavior:'smooth'})},'‹')));
+$('#albums .wrap').append(h('div',{class:'trk'},h('button',{'aria-label':'הקודם',onclick:()=>$('#track').scrollBy({left:340,behavior:'smooth'})},'›'),h('button',{'aria-label':'הבא',onclick:()=>$('#track').scrollBy({left:-340,behavior:'smooth'})},'‹')));
 $$('[data-go]').forEach(e=>{const go=()=>{const t=$(e.dataset.go);t&&t.scrollIntoView({behavior:'smooth',block:'start'})};e.onclick=go;e.onkeydown=ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();go()}}});
 const mb=$('.menu-btn'),nv=$('#nav'),tt=$('#to-top');
 mb.onclick=()=>mb.setAttribute('aria-expanded',nv.classList.toggle('open'));
