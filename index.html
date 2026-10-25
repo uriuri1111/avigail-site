@@ -342,7 +342,7 @@
 .grid button:hover{transform:translateY(-4px);box-shadow:0 22px 40px -24px rgba(59,42,49,.6)}.grid button:hover img{opacity:1;transform:scale(1.05)}
 .srv-img{overflow:hidden;border-radius:14px;box-shadow:0 30px 50px -34px rgba(59,42,49,.55)}.srv-img img{transition:transform 1s ease}.srv:hover .srv-img img{transform:scale(1.05)}
 .track{-webkit-mask-image:linear-gradient(to left,transparent,#000 36px,#000 calc(100% - 36px),transparent);mask-image:linear-gradient(to left,transparent,#000 36px,#000 calc(100% - 36px),transparent)}
-.track img{transition:transform .5s}.track img:hover{transform:scale(1.03)}
+.track img{cursor:zoom-in;transition:transform .5s}.track img:hover{transform:scale(1.03)}
 .lb{backdrop-filter:blur(8px)}.lb.open img{animation:lbIn .4s ease}@keyframes lbIn{from{opacity:0;transform:scale(.96)}}
 .rv{transition-delay:calc(var(--d,0)*70ms)}
 .about{background:linear-gradient(180deg,var(--blush),#fff7f4)}.intro img{box-shadow:0 12px 30px -14px rgba(207,89,141,.7)}
@@ -405,7 +405,7 @@ html.fx-btn .more:hover,html.fx-btn .send:hover{animation:wig .6s ease}
 @media (prefers-reduced-motion:reduce){.fx-ch,.fx-w,.fx-fl svg,.fx-rt{animation:none!important}}
 *,*::before,*::after{font-family:var(--ff,"Tel Aviv",Arial,sans-serif)}
 </style>
-<meta name="avi-pub" content="mvo4n9cd">
+<meta name="avi-pub" content="mvo4nuvq">
 </head>
 <body>
 <a class="skip" href="#about">דילוג לתוכן</a>
@@ -755,7 +755,7 @@ function render(){
  ['#logo-top','#logo-foot'].forEach(q=>$(q).src=S(D.logo));{const lf=$('#logo-foot'),lt=$('#logo-top');lf.onerror=()=>{if(lt.src&&lf.src!==lt.src)lf.src=lt.src}}
  const pt=$('#portrait');if(D.portrait){pt.src=S(D.portrait);pt.style.display=''}else pt.style.display='none';
  $$('.ph').forEach((im,i)=>{im.src=S(D.services[i])});
- const tr=$('#track');tr.innerHTML='';D.albums.forEach((a,i)=>tr.append(h('img',{src:S(a),alt:'אלבום '+(i+1),loading:'lazy'})));
+ const tr=$('#track');tr.innerHTML='';D.albums.forEach((a,i)=>tr.append(h('img',{src:S(a),alt:'אלבום '+(i+1),loading:'lazy',tabindex:'0',role:'button','aria-label':'הגדלת תמונה '+(i+1),onclick:()=>openLb(i,D.albums.slice()),onkeydown:e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openLb(i,D.albums.slice())}}})));
  $('#albums').style.display=D.albums.length?'':'none';
  rtabs();rg();lite();
 }
@@ -794,10 +794,10 @@ try{new MutationObserver(()=>fxScan()).observe($('#grid'),{childList:true})}catc
 
 
 /* לייטבוקס */
-const lb=$('#lb');let idx=0,lf;
-function openLb(i){idx=i;lf=document.activeElement;pl();lb.classList.add('open');document.body.style.overflow='hidden';$('#lb-x').focus()}
-function pl(){$('#lb-img').src=S(vis[idx].i);$('#lb-count').textContent=(idx+1)+' / '+vis.length;new Image().src=S(vis[(idx+1)%vis.length].i)}
-const step=d=>{idx=(idx+d+vis.length)%vis.length;pl()},cl=()=>{lb.classList.remove('open');document.body.style.overflow='';lf&&lf.focus()};
+const lb=$('#lb');let idx=0,lf,lbL=[];
+function openLb(i,list){lbL=list||vis.map(x=>x.i);idx=i;lf=document.activeElement;pl();lb.classList.add('open');document.body.style.overflow='hidden';$('#lb-x').focus()}
+function pl(){$('#lb-img').src=S(lbL[idx]);$('#lb-count').textContent=(idx+1)+' / '+lbL.length;new Image().src=S(lbL[(idx+1)%lbL.length])}
+const step=d=>{idx=(idx+d+lbL.length)%lbL.length;pl()},cl=()=>{lb.classList.remove('open');document.body.style.overflow='';lf&&lf.focus()};
 $('#lb-x').onclick=cl;$('#lb-prev').onclick=()=>step(-1);$('#lb-next').onclick=()=>step(1);$('#more').onclick=()=>more(12);
 lb.onclick=e=>{if(e.target===lb)cl()};
 document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')cl();if(e.key==='ArrowRight')step(-1);if(e.key==='ArrowLeft')step(1)});
