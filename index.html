@@ -280,7 +280,7 @@
     .grid{columns:2;column-gap:10px} .grid button{margin-bottom:10px}
     .track img{width:250px;height:180px}
     .lb .nav{width:40px;height:40px}
-    .fp{bottom:88px;right:14px} .fp-box{width:220px}.float-mail{right:12px}.bar{height:76px}.bar img{height:54px}header.sc .bar{height:64px}header.sc .bar img{height:44px}
+    .fp{bottom:88px;right:14px} .fp-box{width:220px}.float-mail{right:12px}.bar{height:76px}.bar img{height:54px}
     .top{bottom:150px;right:16px}
   }
   @media (prefers-reduced-motion:reduce){ *{animation:none!important;transition:none!important} html{scroll-behavior:auto} }
@@ -329,7 +329,7 @@
 
 /* ===== שדרוג פרימיום ===== */
 #prog{position:fixed;top:0;right:0;left:0;height:3px;z-index:500;background:var(--grad);transform-origin:right;transform:scaleX(0)}
-.bar{transition:height .35s ease}header.sc .bar{height:74px}header.sc .bar img{height:52px}.bar img{transition:height .35s}
+
 
 .hero-word{bottom:14%}.hero-word .w{text-shadow:0 4px 40px rgba(59,42,49,.55)}
 .hero-cta{pointer-events:auto;display:inline-block;margin-top:26px;padding:14px 38px;border-radius:999px;color:#fff;text-decoration:none;font-weight:400;font-size:18px;background:rgba(255,255,255,.16);border:1.5px solid rgba(255,255,255,.8);backdrop-filter:blur(8px);transition:background .3s,color .3s,transform .3s}
@@ -405,7 +405,7 @@ html.fx-btn .more:hover,html.fx-btn .send:hover{animation:wig .6s ease}
 @media (prefers-reduced-motion:reduce){.fx-ch,.fx-w,.fx-fl svg,.fx-rt{animation:none!important}}
 *,*::before,*::after{font-family:var(--ff,"Tel Aviv",Arial,sans-serif)}
 </style>
-<meta name="avi-pub" content="mvkytb03">
+<meta name="avi-pub" content="mvnskqny">
 </head>
 <body>
 <a class="skip" href="#about">דילוג לתוכן</a>
@@ -570,8 +570,8 @@ html.fx-btn .more:hover,html.fx-btn .send:hover{animation:wig .6s ease}
 
 <footer>
   <div class="wrap">
-    <img id="logo-foot" alt="אביגיל ברגמן">
-    <p>אביגיל ברגמן · צילום | וידאו | עריכה · <a href="tel:0527160175">052-716-0175</a></p>
+    <img id="logo-foot" alt="">
+    <p>צילום | וידאו | עריכה · <a href="tel:0527160175">052-716-0175</a></p>
     <p id="soc"></p>
     <p class="adm-link"><span id="adm-open" aria-hidden="true"></span></p>
   </div>
@@ -752,7 +752,7 @@ function render(){
  slides=D.hero.map((it,i)=>{const d=h('div',{class:'slide'});d.style.backgroundImage='url("'+S(it.i)+'")';$('.hero').prepend(d);$('#dots').append(h('button',{role:'tab','aria-label':it.word,onclick:()=>show(i)}));return d});
  D.hero.forEach(it=>{const im=new Image();im.src=S(it.i);im.decode&&im.decode().catch(()=>{})});
  if(slides.length)show(Math.min(cur,slides.length-1));
- ['#logo-top','#logo-foot'].forEach(q=>$(q).src=S(D.logo));
+ ['#logo-top','#logo-foot'].forEach(q=>$(q).src=S(D.logo));{const lf=$('#logo-foot'),lt=$('#logo-top');lf.onerror=()=>{if(lt.src&&lf.src!==lt.src)lf.src=lt.src}}
  const pt=$('#portrait');if(D.portrait){pt.src=S(D.portrait);pt.style.display=''}else pt.style.display='none';
  $$('.ph').forEach((im,i)=>{im.src=S(D.services[i])});
  const tr=$('#track');tr.innerHTML='';D.albums.forEach((a,i)=>tr.append(h('img',{src:S(a),alt:'אלבום '+(i+1),loading:'lazy'})));
@@ -811,7 +811,7 @@ const mb=$('.menu-btn'),nv=$('#nav'),tt=$('#to-top');
 mb.onclick=()=>mb.setAttribute('aria-expanded',nv.classList.toggle('open'));
 $$('#nav a').forEach(a=>a.onclick=()=>{nv.classList.remove('open');mb.setAttribute('aria-expanded',false)});
 tt.onclick=()=>scrollTo({top:0,behavior:'smooth'});
-addEventListener('scroll',()=>{tt.classList.toggle('show',scrollY>700);$('header').classList.toggle('sc',scrollY>10)},{passive:true});
+addEventListener('scroll',()=>{tt.classList.toggle('show',scrollY>700);{const hd=$('header'),y=scrollY;if(y>40)hd.classList.add('sc');else if(y<5)hd.classList.remove('sc')}},{passive:true});
 
 /* טופס יצירת קשר + שליחת מייל */
 /* פתיחת מייל – יציבה, עם גיבוי ל-Gmail ולהעתקה */
@@ -970,7 +970,7 @@ mail:()=>{const m=D.mail,st=h('p',{class:'hn'}),
  PV=[['mailto','בלי שירות – נפתחת אפליקציית המייל של המבקר'],['web3','Web3Forms – חינמי, מפתח אחד (הכי פשוט)'],['emailjs','EmailJS – חינמי'],['formspree','Formspree – חינמי']],
  F={web3:[['key','מפתח (Access Key)']],emailjs:[['svc','Service ID'],['tpl','Template ID'],['key','Public Key']],formspree:[['url','כתובת הטופס (https://formspree.io/f/...)']]}[m.prov]||[],
  how={web3:'נרשמים באתר web3forms.com עם המייל שאליו רוצים לקבל את הפניות, המפתח מגיע לשם. מדביקים אותו כאן.',emailjs:'נרשמים באתר emailjs.com, מחברים שירות מייל ויוצרים תבנית. מדביקים כאן את שלושת הפרטים.',formspree:'נרשמים באתר formspree.io, יוצרים טופס ומדביקים כאן את הכתובת שלו.'};
- return[card('שליחת מיילים מהטופס','שירות חינמי שמעביר את פניות הטופס ישירות למייל, בלי שהמבקר יצטרך לפתוח אפליקציית מייל. המפתחות האלה נועדו לשימוש בדף האתר ולכן אינם סודיים.',lab('שירות',sel(m,'prov',PV,()=>panel())),F.map(([k,l])=>lab(l,bind(m,k,{dir:'ltr',autocomplete:'off'}))),m.prov!=='mailto'&&h('p',{class:'hn',style:'margin-top:12px'},how[m.prov]),m.prov!=='mailto'&&h('div',{},btn('שליחת הודעת בדיקה',async()=>{st.textContent='שולחת...';try{await send({name:'בדיקה מהדשבורד',phone:D.set.phone,kind:'הודעת בדיקה',msg:'אם ההודעה הזו הגיעה – הכול מוגדר נכון 🎉'});st.textContent='נשלח! כדאי לבדוק את תיבת המייל (וגם את הספאם).'}catch{st.textContent='השליחה נכשלה. כדאי לבדוק שהפרטים נכונים.'}},'pri'),st)),
+ return[card('שליחת מיילים מהטופס','שירות חינמי שמעביר את פניות הטופס ישירות למייל, בלי שהמבקר יצטרך לפתוח אפליקציית מייל. המפתחות האלה נועדו לשימוש בדף האתר ולכן אינם סודיים.',lab('שירות',sel(m,'prov',PV,()=>panel())),F.map(([k,l])=>lab(l,bind(m,k,k==='key'?{dir:'ltr',autocomplete:'off',type:'password'}:{dir:'ltr',autocomplete:'off'}))),m.prov!=='mailto'&&h('p',{class:'hn',style:'margin-top:12px'},how[m.prov]),m.prov!=='mailto'&&h('div',{},btn('שליחת הודעת בדיקה',async()=>{st.textContent='שולחת...';try{await send({name:'בדיקה מהדשבורד',phone:D.set.phone,kind:'הודעת בדיקה',msg:'אם ההודעה הזו הגיעה – הכול מוגדר נכון 🎉'});st.textContent='נשלח! כדאי לבדוק את תיבת המייל (וגם את הספאם).'}catch{st.textContent='השליחה נכשלה. כדאי לבדוק שהפרטים נכונים.'}},'pri'),st)),
  card('כתובת המייל באתר','',lab('מייל (מוצג באתר ומשמש כגיבוי)',bind(D.set,'email',{type:'email',dir:'ltr'}))),
  card('אפשרויות "מה מעניין אותך?" בטופס','שורה לכל אפשרות.',(()=>{const e=h('textarea',{rows:5});e.value=D.kinds.join('\n');e.oninput=()=>{D.kinds=e.value.split('\n').map(x=>x.trim()).filter(Boolean);save(1)};return e})())]},
 set:()=>{const s=D.set,pw=h('input',{type:'password',placeholder:'סיסמה חדשה'}),imp=h('input',{type:'file',accept:'.json',style:'display:none'});
