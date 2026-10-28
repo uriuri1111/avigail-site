@@ -405,7 +405,7 @@ html.fx-btn .more:hover,html.fx-btn .send:hover{animation:wig .6s ease}
 @media (prefers-reduced-motion:reduce){.fx-ch,.fx-w,.fx-fl svg,.fx-rt{animation:none!important}}
 *,*::before,*::after{font-family:var(--ff,"Tel Aviv",Arial,sans-serif)}
 </style>
-<meta name="avi-pub" content="mvsp6ubg">
+<meta name="avi-pub" content="mvspgbux">
 </head>
 <body>
 <a class="skip" href="#about">דילוג לתוכן</a>
@@ -667,7 +667,7 @@ const DEF={texts:{},
  services:['g01','g07','g08'].map(k=>'ref:'+k),portrait:'',logo:'ref:logo',favicon:'',
  cats:[{id:'baby',label:'תינוקות'},{id:'kids',label:'ילדים'},{id:'mitzva',label:'בר ובת מצווה'}],
  reviews:[],fonts:{},kinds:$$('#f-kind option').map(o=>o.textContent),
- set:{phone:'0527160175',email:'a0527160175@gmail.com',wa:true,ig:'',fb:'',taste:'https://drive.google.com/file/d/1ROR4u46Fqhazkvda8DEToi2U-9oFoI9a/view?usp=sharing',title:document.title,desc:$('meta[name=description]').content,font:'Tel Aviv',rose:'#CF598D',coral:'#E67972',sec:5.5,pass:'',fx:true,fxHero:true,fxTtl:true,fxFloat:true,fxMark:true,fxGal:true,fxPara:true,fxCursor:true,fxRib:true,fxBtn:true,fxLevel:'2',gc:'',ribbon:'צחוק · רגעים · אהבה · ילדות · משפחה · זיכרונות'},
+ set:{phone:'0527160175',email:'a0527160175@gmail.com',wa:true,ig:'',fb:'',title:document.title,desc:$('meta[name=description]').content,font:'Tel Aviv',rose:'#CF598D',coral:'#E67972',sec:5.5,pass:'',fx:true,fxHero:true,fxTtl:true,fxFloat:true,fxMark:true,fxGal:true,fxPara:true,fxCursor:true,fxRib:true,fxBtn:true,fxLevel:'2',gc:'',ribbon:'צחוק · רגעים · אהבה · ילדות · משפחה · זיכרונות'},
  mail:{prov:'mailto',key:'',svc:'',tpl:'',url:''}};
 const mg=(a,b)=>{const o=structuredClone(a);for(const k in b)o[k]=(k==='set'||k==='mail'||k==='texts'||k==='fonts')?{...o[k],...b[k]}:b[k];return o};
 const emb=()=>JSON.parse($('#site-data').textContent||'{}');
@@ -695,7 +695,6 @@ function rt(){
  const ph=s.phone,pr=ph.replace(/^(\d{3})(\d{3})(\d{4})$/,'$1-$2-$3'),tel='tel:'+ph,m='mailto:'+(s.email||'a0527160175@gmail.com')+'?subject='+encodeURIComponent('הגעתי מהאתר');
  $('#w-tel b').textContent=pr;$('#w-mail').href=m;{const fm=$('#float-mail');if(fm)fm.href=m}$('#w-mail b').textContent=s.email;
  $$('footer a[href^="tel"]').forEach(a=>{a.href=tel;a.textContent=pr});
-  {const ta=$('#taste');if(ta){let u=(s.taste||'').trim();if(u&&!/^[a-z][a-z0-9+.-]*:/i.test(u))u='https://'+u;if(!/^https?:\/\//i.test(u))u='https://drive.google.com/file/d/1ROR4u46Fqhazkvda8DEToi2U-9oFoI9a/view?usp=sharing';if(ta.getAttribute('href')!==u)ta.setAttribute('href',u)}}
   $('#soc').innerHTML=[['ig','אינסטגרם'],['fb','פייסבוק']].filter(x=>s[x[0]]).map(x=>'<a href="'+esc(s[x[0]])+'" target="_blank" rel="noopener">'+x[1]+'</a>').join('');
  const k=$('#f-kind');k.innerHTML='';D.kinds.forEach(x=>k.append(h('option',{},x)));
  let j=$('#ld');if(!j){j=h('script',{id:'ld',type:'application/ld+json'});document.head.append(j)}
@@ -1009,8 +1008,7 @@ set:()=>{const s=D.set,pw=h('input',{type:'password',placeholder:'סיסמה ח�
  const chk=(l,k)=>h('label',{style:'display:flex;gap:8px;align-items:center;margin:7px 0'},h('input',{type:'checkbox',checked:s[k]!==false,onchange:e=>{s[k]=e.target.checked;save(1)}}),l);
  imp.onchange=async()=>{try{D=mg(DEF,JSON.parse(await imp.files[0].text()));save();panel()}catch{alert('הקובץ לא תקין')}};
  return[card('פרטי קשר','',lab('טלפון',bind(s,'phone',{type:'tel',dir:'ltr'})),lab('אינסטגרם (קישור)',bind(s,'ig',{dir:'ltr',placeholder:'https://instagram.com/...'})),lab('פייסבוק (קישור)',bind(s,'fb',{dir:'ltr',placeholder:'https://facebook.com/...'}))),
- card('קישור "לטעימה מרגעים שתיעדתי"','הקישור שנפתח בלחיצה על הכפתור בחלק של הוידאו. אפשר להדביק קישור חדש (דרייב, יוטיוב וכו׳). אם משאירים ריק, חוזר הקישור המקורי.',lab('קישור',bind(s,'taste',{dir:'ltr',placeholder:'https://...'})),h('div',{class:'ac2',style:'margin-top:10px'},btn('בדיקת הקישור',()=>{const u=(s.taste||'').trim();window.open(/^https?:/i.test(u)?u:'https://'+u,'_blank','noopener')}),btn('↺ חזרה למקורי',()=>{s.taste='https://drive.google.com/file/d/1ROR4u46Fqhazkvda8DEToi2U-9oFoI9a/view?usp=sharing';save(1);panel()}))),
-  card('אפקטים ואנימציות','נותנים לאתר חיים: אותיות וכותרות שקופצות, צורות צפות, ניצנוצים אחרי העכבר ועוד. אפשר לכבות הכל או כל אפקט בנפרד. מבקרים שהגדירו במכשיר "הפחתת תנועה" יראו אתר רגוע בלי אפקטים.',chk('כל האפקטים (מתג ראשי)','fx'),h('div',{class:'row2'},h('div',{},chk('אותיות קופצות בתמונת הפתיחה','fxHero'),chk('כותרות ומילים שקופצות','fxTtl'),chk('סימון צבעוני מתחת לטקסטים','fxMark'),chk('תמונות גלריה שקופצות','fxGal'),chk('כפתורים שפועמים ונעים','fxBtn')),h('div',{},chk('צורות וליבות צפות ברקע','fxFloat'),chk('תנועת עומק בגלילה','fxPara'),chk('ניצנוצים אחרי העכבר (מחשב)','fxCursor'),chk('רצועת מילים נעה','fxRib'))),lab('עוצמת האפקטים',sel(s,'fxLevel',[['1','עדינה'],['2','בינונית'],['3','חזקה']])),lab('המילים ברצועה הנעה (מפרידים בנקודה ·)',bind(s,'ribbon'))),
+ card('אפקטים ואנימציות','נותנים לאתר חיים: אותיות וכותרות שקופצות, צורות צפות, ניצנוצים אחרי העכבר ועוד. אפשר לכבות הכל או כל אפקט בנפרד. מבקרים שהגדירו במכשיר "הפחתת תנועה" יראו אתר רגוע בלי אפקטים.',chk('כל האפקטים (מתג ראשי)','fx'),h('div',{class:'row2'},h('div',{},chk('אותיות קופצות בתמונת הפתיחה','fxHero'),chk('כותרות ומילים שקופצות','fxTtl'),chk('סימון צבעוני מתחת לטקסטים','fxMark'),chk('תמונות גלריה שקופצות','fxGal'),chk('כפתורים שפועמים ונעים','fxBtn')),h('div',{},chk('צורות וליבות צפות ברקע','fxFloat'),chk('תנועת עומק בגלילה','fxPara'),chk('ניצנוצים אחרי העכבר (מחשב)','fxCursor'),chk('רצועת מילים נעה','fxRib'))),lab('עוצמת האפקטים',sel(s,'fxLevel',[['1','עדינה'],['2','בינונית'],['3','חזקה']])),lab('המילים ברצועה הנעה (מפרידים בנקודה ·)',bind(s,'ribbon'))),
  card('מראה','',h('div',{class:'row2'},lab('צבע ראשי',bind(s,'rose',{type:'color'})),lab('צבע משני',bind(s,'coral',{type:'color'}))),lab('שניות בין תמונות בפתיחה',bind(s,'sec',{type:'number',min:2,max:20,step:.5}))),
  card('קידום בגוגל','',lab('כותרת האתר',bind(s,'title')),lab('תיאור קצר',bind(s,'desc',{rows:3},'textarea'))),
  card('פרסום ישיר לאתר','כך השינויים נשמרים באמת בקובץ שבאתר וכל המבקרים רואים אותם, בלי להוריד ולהעלות ידנית. דורש אחסון באתר GitHub Pages (חינמי). הפרטים והטוקן נשמרים רק בדפדפן הזה, ולא בקובץ האתר.',lab('חשבון ב-GitHub',ghb('o')),lab('שם המאגר (repo)',ghb('r')),lab('ענף (branch)',ghb('b')),lab('שם הקובץ',ghb('p')),lab('טוקן גישה (Fine-grained, הרשאת Contents: Read and write)',ghb('t')),h('div',{class:'ac2',style:'margin-top:12px'},btn('פרסום לאתר עכשיו',()=>ghPublish(),'pri')),h('p',{class:'hn',id:'ghst',style:'margin-top:8px'})),
