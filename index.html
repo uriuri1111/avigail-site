@@ -342,7 +342,7 @@
 .grid button:hover{transform:translateY(-4px);box-shadow:0 22px 40px -24px rgba(59,42,49,.6)}.grid button:hover img{opacity:1;transform:scale(1.05)}
 .srv-img{overflow:hidden;border-radius:14px;box-shadow:0 30px 50px -34px rgba(59,42,49,.55)}.srv-img img{transition:transform 1s ease}.srv:hover .srv-img img{transform:scale(1.05)}
 .track{-webkit-mask-image:linear-gradient(to left,transparent,#000 36px,#000 calc(100% - 36px),transparent);mask-image:linear-gradient(to left,transparent,#000 36px,#000 calc(100% - 36px),transparent)}
-.track img{transition:transform .5s}.track img:hover{transform:scale(1.03)}
+.track img{transition:transform .5s;cursor:zoom-in}.track img:hover{transform:scale(1.03)}
 .lb{backdrop-filter:blur(8px)}.lb.open img{animation:lbIn .4s ease}@keyframes lbIn{from{opacity:0;transform:scale(.96)}}
 .rv{transition-delay:calc(var(--d,0)*70ms)}
 .about{background:linear-gradient(180deg,var(--blush),#fff7f4)}.intro img{box-shadow:0 12px 30px -14px rgba(207,89,141,.7)}
@@ -405,7 +405,7 @@ html.fx-btn .more:hover,html.fx-btn .send:hover{animation:wig .6s ease}
 @media (prefers-reduced-motion:reduce){.fx-ch,.fx-w,.fx-fl svg,.fx-rt{animation:none!important}}
 *,*::before,*::after{font-family:var(--ff,"Tel Aviv",Arial,sans-serif)}
 </style>
-<meta name="avi-pub" content="mvt780fr">
+<meta name="avi-pub" content="mvti3lqp">
 </head>
 <body>
 <a class="skip" href="#about">דילוג לתוכן</a>
@@ -509,7 +509,7 @@ html.fx-btn .more:hover,html.fx-btn .send:hover{animation:wig .6s ease}
     <div class="sec-head">
       <p class="eyebrow">Albums</p>
       <h2>האלבומים שלי</h2>
-      <p>גלילה הצידה לעוד</p>
+      <p>גלילה הצידה לעוד · לחיצה על תמונה תגדיל אותה</p>
     </div>
     <div class="track" id="track"></div>
   </div>
@@ -667,7 +667,7 @@ const DEF={texts:{},
  services:['g01','g07','g08'].map(k=>'ref:'+k),portrait:'',logo:'ref:logo',favicon:'',
  cats:[{id:'baby',label:'תינוקות'},{id:'kids',label:'ילדים'},{id:'mitzva',label:'בר ובת מצווה'}],
  reviews:[],fonts:{},kinds:$$('#f-kind option').map(o=>o.textContent),
- set:{phone:'0527160175',email:'a0527160175@gmail.com',wa:true,ig:'',fb:'',taste:'https://drive.google.com/file/d/1ROR4u46Fqhazkvda8DEToi2U-9oFoI9a/view?usp=sharing',title:document.title,desc:$('meta[name=description]').content,font:'Tel Aviv',rose:'#CF598D',coral:'#E67972',sec:5.5,pass:'',fx:true,fxHero:true,fxTtl:true,fxFloat:true,fxMark:true,fxGal:true,fxPara:true,fxCursor:true,fxRib:true,fxBtn:true,fxLevel:'2',gc:'',ribbon:'צחוק · רגעים · אהבה · ילדות · משפחה · זיכרונות'},
+ set:{phone:'0527160175',email:'a0527160175@gmail.com',wa:true,ig:'',fb:'',taste:'https://drive.google.com/file/d/1ROR4u46Fqhazkvda8DEToi2U-9oFoI9a/view?usp=sharing',title:document.title,desc:$('meta[name=description]').content,font:'Tel Aviv',rose:'#CF598D',coral:'#E67972',sec:5.5,pass:'',fx:true,fxHero:true,fxTtl:true,fxFloat:true,fxMark:true,fxGal:true,fxPara:true,fxCursor:true,fxRib:true,fxBtn:true,fxLevel:'2',gc:'',ga:'',ribbon:'צחוק · רגעים · אהבה · ילדות · משפחה · זיכרונות'},
  mail:{prov:'mailto',key:'',svc:'',tpl:'',url:''}};
 const mg=(a,b)=>{const o=structuredClone(a);for(const k in b)o[k]=(k==='set'||k==='mail'||k==='texts'||k==='fonts')?{...o[k],...b[k]}:b[k];return o};
 const emb=()=>JSON.parse($('#site-data').textContent||'{}');
@@ -685,12 +685,13 @@ const io='IntersectionObserver'in window?new IntersectionObserver(es=>es.forEach
 let slides=[],cur=0,timer,act='all',vis=[],shown=0;
 const tx=k=>D.texts[k]??(D.mail.prov!=='mailto'?ALT[k]:undefined)??DT[k]??'';
 
+function gaLoad(){const id=(D.set.ga||'').trim();if(!/^G-[A-Z0-9]{6,14}$/i.test(id)||window.parent!==window||document.getElementById('gas'))return;try{if(localStorage.getItem('skipgc'))return}catch{}window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config',id);const sc=document.createElement('script');sc.id='gas';sc.async=true;sc.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(id);document.head.append(sc)}
 function gcLoad(){const c=(D.set.gc||'').trim().toLowerCase();if(!c||!/^[a-z0-9-]+$/.test(c)||window.parent!==window||document.getElementById('gcs'))return;try{if(localStorage.getItem('skipgc'))return}catch{}const sc=document.createElement('script');sc.id='gcs';sc.async=true;sc.dataset.goatcounter='https://'+c+'.goatcounter.com/count';sc.src='https://gc.zgo.at/count.js';document.body.append(sc)}
 function rt(){
  const s=D.set,r=document.documentElement.style;
  r.setProperty('--rose',s.rose);r.setProperty('--coral',s.coral);r.setProperty('--kb',((parseFloat(s.sec)||5.5)+2.5)+'s');
  {const fu=D.favicon?S(D.favicon):FAV0;['#fav','#fav-apple'].forEach(q=>{const e=$(q);if(e&&e.getAttribute('href')!==fu)e.setAttribute('href',fu)})}
- document.title=s.title;gcLoad();$('meta[name=description]').content=s.desc;$('meta[property="og:title"]').content=s.title;
+ document.title=s.title;gcLoad();gaLoad();$('meta[name=description]').content=s.desc;$('meta[property="og:title"]').content=s.title;
  TF.forEach(g=>g[1].forEach(([k,,sel])=>{const e=$(sel);if(e){const v=tx(k);if(!(e.querySelector('.fx-w')&&e.textContent===v))e.textContent=v}}));
  const ph=s.phone,pr=ph.replace(/^(\d{3})(\d{3})(\d{4})$/,'$1-$2-$3'),tel='tel:'+ph,m='mailto:'+(s.email||'a0527160175@gmail.com')+'?subject='+encodeURIComponent('הגעתי מהאתר');
  $('#w-tel b').textContent=pr;$('#w-mail').href=m;{const fm=$('#float-mail');if(fm)fm.href=m}$('#w-mail b').textContent=s.email;
@@ -757,7 +758,7 @@ function render(){
  ['#logo-top','#logo-foot'].forEach(q=>$(q).src=S(D.logo));{const lf=$('#logo-foot'),lt=$('#logo-top');lf.onerror=()=>{if(lt.src&&lf.src!==lt.src)lf.src=lt.src}}
  const pt=$('#portrait');if(D.portrait){pt.src=S(D.portrait);pt.style.display=''}else pt.style.display='none';
  $$('.ph').forEach((im,i)=>{im.src=S(D.services[i])});
- const tr=$('#track');tr.innerHTML='';D.albums.forEach((a,i)=>tr.append(h('img',{src:S(a),alt:'אלבום '+(i+1),loading:'lazy'})));
+ const tr=$('#track');tr.innerHTML='';D.albums.forEach((a,i)=>tr.append(h('img',{src:S(a),alt:'אלבום '+(i+1),loading:'lazy',role:'button',tabindex:'0',title:'לחיצה להגדלה',onclick:()=>openLb(i,D.albums.map(x=>({i:x}))),onkeydown:e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openLb(i,D.albums.map(x=>({i:x})))}}})));
  $('#albums').style.display=D.albums.length?'':'none';
  rtabs();rg();lite();
 }
@@ -796,10 +797,10 @@ try{new MutationObserver(()=>fxScan()).observe($('#grid'),{childList:true})}catc
 
 
 /* לייטבוקס */
-const lb=$('#lb');let idx=0,lf;
-function openLb(i){idx=i;lf=document.activeElement;pl();lb.classList.add('open');document.body.style.overflow='hidden';$('#lb-x').focus()}
-function pl(){$('#lb-img').src=S(vis[idx].i);$('#lb-count').textContent=(idx+1)+' / '+vis.length;new Image().src=S(vis[(idx+1)%vis.length].i)}
-const step=d=>{idx=(idx+d+vis.length)%vis.length;pl()},cl=()=>{lb.classList.remove('open');document.body.style.overflow='';lf&&lf.focus()};
+const lb=$('#lb');let idx=0,lf,lbl=null;const LL=()=>lbl||vis;
+function openLb(i,l){lbl=l||null;idx=i;lf=document.activeElement;pl();lb.classList.add('open');document.body.style.overflow='hidden';$('#lb-x').focus()}
+function pl(){const a=LL();$('#lb-img').src=S(a[idx].i);$('#lb-count').textContent=(idx+1)+' / '+a.length;new Image().src=S(a[(idx+1)%a.length].i)}
+const step=d=>{idx=(idx+d+LL().length)%LL().length;pl()},cl=()=>{lb.classList.remove('open');document.body.style.overflow='';lf&&lf.focus()};
 $('#lb-x').onclick=cl;$('#lb-prev').onclick=()=>step(-1);$('#lb-next').onclick=()=>step(1);$('#more').onclick=()=>more(12);
 lb.onclick=e=>{if(e.target===lb)cl()};
 document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')cl();if(e.key==='ArrowRight')step(-1);if(e.key==='ArrowLeft')step(1)});
@@ -954,20 +955,36 @@ stat:()=>{const s=D.set,out=h('div',{style:'margin-top:14px;line-height:1.9;font
  row=(l,v)=>h('div',{style:'display:flex;justify-content:space-between;gap:14px;border-bottom:1px solid var(--line);padding:6px 0'},h('span',{},l),h('b',{style:'font-weight:600'},String(v)));
  tk.value=GH.gt||'';tk.oninput=()=>{GH.gt=tk.value.trim();idbSet('gh',GH)};
  const load=async()=>{
-  if(!/^[a-z0-9-]+$/i.test((s.gc||'').trim())){out.replaceChildren('קודם ממלאים את קוד החשבון (רק אותיות באנגלית, מספרים ומקף).');return}
+  const code=(s.gc||'').trim().toLowerCase();
+  if(!/^[a-z0-9-]+$/.test(code)){out.replaceChildren('קודם ממלאים את קוד החשבון (רק אותיות באנגלית, מספרים ומקף).');return}
   out.replaceChildren('טוענת...');
+  const sl=ms=>new Promise(r=>setTimeout(r,ms));
   try{
-   if(GH.gt){
-    const H={Authorization:'Bearer '+GH.gt,Accept:'application/json'},n=new Date(),
-    g=async a=>{const r=await fetch(base()+'/api/v0/stats/total?start='+encodeURIComponent(a.toISOString())+'&end='+encodeURIComponent(n.toISOString()),{headers:H});if(!r.ok)throw r.status;const j=await r.json();return j.total??0},
-    t0=new Date(n);t0.setHours(0,0,0,0);
-    const [hr,td,wk,all]=await Promise.all([g(new Date(n-36e5)),g(t0),g(new Date(n-7*864e5)),g(new Date('2020-01-01'))]);
-    out.replaceChildren(row('בשעה האחרונה (בקירוב, הנתונים נשמרים לפי שעות)',hr),row('היום',td),row('7 ימים אחרונים',wk),row('סה״כ מאז ההתחלה',all))
-   }else{
+   if(!GH.gt){
     const r=await fetch(base()+'/counter/TOTAL.json');if(!r.ok)throw r.status;const j=await r.json();
-    out.replaceChildren(row('סה״כ כניסות',j.count),h('div',{class:'hn',style:'margin-top:8px'},'כדי לראות גם "היום", "7 ימים" ו"בשעה האחרונה", מוסיפים API token (שלב 4 למעלה).'))
+    out.replaceChildren(row('סה״כ כניסות',j.count),h('div',{class:'hn',style:'margin-top:8px'},'כדי לראות גם פירוט לפי ימים ושעות, מוסיפים API token.'));return
    }
-  }catch(e){out.replaceChildren('לא הצלחתי לקרוא נתונים ('+e+'). בודקים שקוד החשבון נכון, ושההרשאה בשלב 4 הופעלה. בינתיים תמיד אפשר לראות הכל בלוח של השירות: ',h('a',{href:base(),target:'_blank',rel:'noopener',style:'color:var(--rose)'},base().replace('https://','')))}
+   const H={Authorization:'Bearer '+GH.gt,Accept:'application/json'};
+   const get=async(a,b)=>{
+    for(let k=0;k<5;k++){
+     const r=await fetch(base()+'/api/v0/stats/total?start='+encodeURIComponent(a.toISOString())+'&end='+encodeURIComponent(b.toISOString()),{headers:H});
+     if(r.status===429){const w=(+r.headers.get('Retry-After')||0)||(6*(k+1));out.replaceChildren('GoatCounter מגביל קצב בקשות, מנסה שוב בעוד '+w+' שניות ('+(k+1)+'/5)...');await sl(w*1000);continue}
+     if(!r.ok)throw r.status;return r.json()}
+    throw 429};
+   const n=new Date(),d30=new Date(n-30*864e5);
+   const m=await get(d30,n);
+   const days=(m.stats||[]).slice().sort((a,b)=>a.day<b.day?-1:1),dv=x=>x.daily??(x.hourly||[]).reduce((a,b)=>a+b,0);
+   const last=days[days.length-1]||{day:'',hourly:[]},today=last.day===(n.getFullYear()+'-'+String(n.getMonth()+1).padStart(2,'0')+'-'+String(n.getDate()).padStart(2,'0'))?last:{day:'',hourly:[]};
+   const sum=a=>a.reduce((t,x)=>t+dv(x),0),hr=today.hourly||[],hnow=hr[n.getHours()]??0;
+   out.replaceChildren(
+    row('בשעה הנוכחית',hnow),row('היום',today.day?dv(today):0),row('7 ימים אחרונים',sum(days.slice(-7))),row('30 ימים אחרונים',m.total??sum(days)),
+    h('div',{class:'hn',style:'margin:14px 0 6px'},'כניסות לפי יום (החדש למעלה)'),
+    ...days.slice().reverse().filter(x=>dv(x)>0||true).slice(0,30).map(x=>{const v=dv(x),mx=Math.max(1,...days.map(dv));return h('div',{style:'display:flex;align-items:center;gap:10px;font-size:14.5px;margin:3px 0'},h('span',{style:'width:92px;flex:none',dir:'ltr'},x.day),h('span',{style:'flex:1;height:10px;background:var(--blush);border-radius:6px;overflow:hidden'},h('span',{style:'display:block;height:100%;width:'+Math.round(v/mx*100)+'%;background:var(--grad)'})),h('b',{style:'width:44px;text-align:left;font-weight:600'},String(v)))}),
+    today.day&&h('div',{class:'hn',style:'margin:14px 0 6px'},'היום לפי שעות: '+hr.map((v,i)=>v?i+':00 – '+v:'').filter(Boolean).join(' · ')||''),
+    h('div',{id:'allt',class:'hn',style:'margin-top:12px'},'סך הכול מאז ההתחלה: טוענת...'));
+   await sl(1500);
+   try{const a=await get(new Date('2020-01-01'),n);const e=$('#allt');e&&(e.textContent='סך הכול מאז ההתחלה: '+(a.total??0))}catch{const e=$('#allt');e&&(e.textContent='סך הכול מאז ההתחלה: לא זמין כרגע')}
+  }catch(e){out.replaceChildren('לא הצלחתי לקרוא נתונים ('+e+'). '+(e===429?'GoatCounter עדיין מגביל קצב בקשות. מחכים כמה דקות ולוחצים פעם אחת בלבד. ':'בודקים שקוד החשבון (avigail) והטוקן נכונים. ')+'אפשר לראות הכול גם בלוח של השירות: ',h('a',{href:base(),target:'_blank',rel:'noopener',style:'color:var(--rose)'},base().replace('https://','')))}
  };
  const steps=h('ol',{style:'margin:0 0 14px;padding-inline-start:20px;line-height:1.9'},
   h('li',{},'נכנסים ל-',h('a',{href:'https://www.goatcounter.com/signup',target:'_blank',rel:'noopener',style:'color:var(--rose)'},'goatcounter.com/signup'),', בוחרים קוד באנגלית (למשל avigail), מזינים מייל וסיסמה ומאשרים.'),
@@ -1009,6 +1026,7 @@ set:()=>{const s=D.set,pw=h('input',{type:'password',placeholder:'סיסמה ח�
  const chk=(l,k)=>h('label',{style:'display:flex;gap:8px;align-items:center;margin:7px 0'},h('input',{type:'checkbox',checked:s[k]!==false,onchange:e=>{s[k]=e.target.checked;save(1)}}),l);
  imp.onchange=async()=>{try{D=mg(DEF,JSON.parse(await imp.files[0].text()));save();panel()}catch{alert('הקובץ לא תקין')}};
  return[card('פרטי קשר','',lab('טלפון',bind(s,'phone',{type:'tel',dir:'ltr'})),lab('אינסטגרם (קישור)',bind(s,'ig',{dir:'ltr',placeholder:'https://instagram.com/...'})),lab('פייסבוק (קישור)',bind(s,'fb',{dir:'ltr',placeholder:'https://facebook.com/...'}))),
+ card('Google Analytics','מדביקים כאן את מזהה המדידה (Measurement ID) שמתחיל ב-G- ואחריו אותיות ומספרים. אחרי הדבקה לוחצים "פרסום לאתר". הספירה פועלת רק באתר המפורסם, ולא במכשיר שבו התחברת לדשבורד.',lab('מזהה מדידה',bind(s,'ga',{dir:'ltr',autocomplete:'off',placeholder:'G-XXXXXXXXXX'})),h('div',{class:'ac2',style:'margin-top:10px'},h('a',{class:'adm-btn',href:'https://analytics.google.com',target:'_blank',rel:'noopener',style:'text-decoration:none'},'פתיחת Google Analytics'))),
  card('קישור "לטעימה מרגעים שתיעדתי"','הקישור שנפתח בלחיצה על הכפתור בחלק של הוידאו. אפשר להדביק קישור חדש (דרייב, יוטיוב וכו׳). אם משאירים ריק, חוזר הקישור המקורי.',lab('קישור',bind(s,'taste',{dir:'ltr',placeholder:'https://...'})),h('div',{class:'ac2',style:'margin-top:10px'},btn('בדיקת הקישור',()=>{const u=(s.taste||'').trim();window.open(/^https?:/i.test(u)?u:'https://'+u,'_blank','noopener')}),btn('↺ חזרה למקורי',()=>{s.taste='https://drive.google.com/file/d/1ROR4u46Fqhazkvda8DEToi2U-9oFoI9a/view?usp=sharing';save(1);panel()}))),
   card('אפקטים ואנימציות','נותנים לאתר חיים: אותיות וכותרות שקופצות, צורות צפות, ניצנוצים אחרי העכבר ועוד. אפשר לכבות הכל או כל אפקט בנפרד. מבקרים שהגדירו במכשיר "הפחתת תנועה" יראו אתר רגוע בלי אפקטים.',chk('כל האפקטים (מתג ראשי)','fx'),h('div',{class:'row2'},h('div',{},chk('אותיות קופצות בתמונת הפתיחה','fxHero'),chk('כותרות ומילים שקופצות','fxTtl'),chk('סימון צבעוני מתחת לטקסטים','fxMark'),chk('תמונות גלריה שקופצות','fxGal'),chk('כפתורים שפועמים ונעים','fxBtn')),h('div',{},chk('צורות וליבות צפות ברקע','fxFloat'),chk('תנועת עומק בגלילה','fxPara'),chk('ניצנוצים אחרי העכבר (מחשב)','fxCursor'),chk('רצועת מילים נעה','fxRib'))),lab('עוצמת האפקטים',sel(s,'fxLevel',[['1','עדינה'],['2','בינונית'],['3','חזקה']])),lab('המילים ברצועה הנעה (מפרידים בנקודה ·)',bind(s,'ribbon'))),
  card('מראה','',h('div',{class:'row2'},lab('צבע ראשי',bind(s,'rose',{type:'color'})),lab('צבע משני',bind(s,'coral',{type:'color'}))),lab('שניות בין תמונות בפתיחה',bind(s,'sec',{type:'number',min:2,max:20,step:.5}))),
